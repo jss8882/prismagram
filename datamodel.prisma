@@ -1,5 +1,51 @@
 type User {
   id: ID! @id
-  name: String!
-  lastName: String!
+  username: String! @unique
+  email: String! @unique
+  firstName: String @default(value: "")
+  lastName: String
+  bio: String
+
+  posts: [Post!]!
+  likes: [Like!]!
+  comments: [Comment!]!
+
+  # self-relation can also be bidirectional
+  followers: [User!]! @relation(name: "FollowRelation")
+  following: [User!]! @relation(name: "FollowRelation")
+
+
+}
+
+
+type Post {
+  id: ID! @id
+  files: [File!]!
+  location: String
+  caption: String!
+  user: User!
+  likes: [Like!]!
+  comments: [Comment!]!
+}
+
+type Like{
+  id: ID! @id
+  user: User!
+  post: Post!
+
+}
+
+type Comment{
+  id: ID! @id
+  text: String!
+  user: User!
+  post: Post!
+
+}
+
+type File {
+  # 파일은 POST와 연결되어 있으므로 URL이 필요
+  id: ID! @id
+  url: String!
+  post: Post!
 }
