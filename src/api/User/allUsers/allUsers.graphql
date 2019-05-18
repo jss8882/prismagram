@@ -1,0 +1,4 @@
+type Query{
+    # allUsers는 모든 유저를 리턴
+    allUsers: [User!]!
+}

@@ -1,8 +1,8 @@
 type User {
-  id: ID! @id
-  username: String! @unique
-  email: String! @unique
-  firstName: String @default(value: "")
+  id: ID!
+  username: String! 
+  email: String! 
+  firstName: String 
   lastName: String
   bio: String
 
@@ -11,8 +11,8 @@ type User {
   comments: [Comment!]!
 
   # self-relation can also be bidirectional
-  followers: [User!]! @relation(name: "FollowRelation")
-  following: [User!]! @relation(name: "FollowRelation")
+  followers: [User!]! 
+  following: [User!]! 
 
   rooms:[Room!]!
 
@@ -21,7 +21,7 @@ type User {
 
 
 type Post {
-  id: ID! @id
+  id: ID! 
   files: [File!]!
   location: String
   caption: String!
@@ -31,14 +31,14 @@ type Post {
 }
 
 type Like{
-  id: ID! @id
+  id: ID! 
   user: User!
   post: Post!
 
 }
 
 type Comment{
-  id: ID! @id
+  id: ID! 
   text: String!
   user: User!
   post: Post!
@@ -47,22 +47,22 @@ type Comment{
 
 type File {
   # 파일은 POST와 연결되어 있으므로 URL이 필요
-  id: ID! @id
+  id: ID! 
   url: String!
   post: Post!
 }
 
 type Room{
-  id: ID! @id
+  id: ID! 
   participants: [User!]!
   messages: [Message!]!
 }
 
 type Message{
-  id: ID! @id
+  id: ID! 
   text: String!
-  from: User! @relation(name: "From")
-  to: User! @relation(name: "To")
+  from: User! 
+  to: User! 
   room: Room!
   
 }

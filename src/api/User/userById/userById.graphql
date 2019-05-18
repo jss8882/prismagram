@@ -1,0 +1,4 @@
+type Query{
+    # id를 입력받아서 User를 리턴한다.
+    userById(id: String!): User!
+}
